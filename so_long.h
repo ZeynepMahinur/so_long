@@ -17,6 +17,15 @@ typedef struct s_game
 
 }              t_game;
 
+int     map_read(char *filename, t_game *data);
 
+void    free_map(t_game *data);
+
+void    map_error(char *err);
+
+size_t  ft_strlen(const char *str);
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
+char    *get_next_line(int fd);
+int     ft_printf(const char *f, ...);
 
 #endif
