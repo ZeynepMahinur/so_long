@@ -6,7 +6,7 @@ static void     check_ber(char *filename)
 
     len = ft_strlen(filename);
     if (len < 4 || ft_strncmp(filename + len - 4, ".ber", 4) != 0)
-        map_error("Error! Invalid file extension. Expected .ber");
+        map_error("Invalid file extension. Expected .ber");
 
 }
 
@@ -29,10 +29,14 @@ static void     read_maplines(int fd, t_game *data)
 
     i = 0;
     while ((line = get_next_line(fd)) != NULL)
+    {
+        if (line[ft_strlen(line) - 1] == '\n')
+            line[ft_strlen(line) - 1] = '\0';
         data->map[i++] = line;
+    }
     data->map[i] = NULL;
     if (i == 0)
-        map_error("Error! Map is unreadable.");
+        map_error("Map is unreadable.");
 }
 
 int map_read(char *filename, t_game *data)
@@ -42,20 +46,18 @@ int map_read(char *filename, t_game *data)
     check_ber(filename);
     fd = open(filename, O_RDONLY);
     if (fd < 0)
-        map_error("Error! File could not be opened.");
+        map_error("File could not be opened.");
     height_count(fd, data);
     close (fd);
     data->map = malloc(sizeof(char *) * (data->height + 1));
     if (!data->map)
-        map_error("Error! Memory allocation failed for map.");
+        map_error("Memory allocation failed for map.");
     fd = open(filename, O_RDONLY);
     read_maplines(fd, data);
     close (fd);
     if (fd < 0)
-        map_error("Error! File couldn't be reopened");
+        map_error("File couldn't be reopened");
     data->width = ft_strlen(data->map[0]);
-    if (data->map[0][data->width - 1] == '\n')
-        data->width--;
     return (0);
 }
 
