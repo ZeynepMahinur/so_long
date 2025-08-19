@@ -61,4 +61,3 @@ int map_read(char *filename, t_game *data)
     return (0);
 }
 
-

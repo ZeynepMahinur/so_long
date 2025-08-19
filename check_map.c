@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void    check_rectangle(t_game *data)
+static void     check_rectangle(t_game *data)
 {
     int     len;
     int     i;
@@ -17,7 +17,7 @@ static void    check_rectangle(t_game *data)
     }
 }
 
-static void    check_wall_limit(t_game *data)
+static void     check_wall_limit(t_game *data)
 {
     int     i;
 
@@ -25,12 +25,11 @@ static void    check_wall_limit(t_game *data)
     while (i < data->width)
     {
         if (data->map[0][i] != '1')
-            map_error("First wall isn't closed.");
+            map_error("First wall isn't closed properly.");
         if (data->map[data->height - 1][i] != '1')
-            map_error("Last wall isn't closed.");
+            map_error("Last wall isn' closed properly.");
         i++;
     }
-
     i = 0;
     while (i < data->height)
     {
@@ -48,3 +47,4 @@ void    check_map(t_game *data)
     check_wall_limit(data);
     check_characters(data);
 }
+

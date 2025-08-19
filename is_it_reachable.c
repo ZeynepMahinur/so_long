@@ -7,13 +7,13 @@ static char     **map_copy(t_game *data)
 
     copy = malloc(sizeof (char *) * data->height);
     if (!copy)
-        map_error("Map allocation failed for copy of the map.");
+        map_error("Map allocation failed for the copy of the map.");
     i = 0;
     while (i < data->height)
     {
         copy[i] = ft_strdup(data->map[i]);
         if (!copy[i])
-            map_error("Memory allocation failed for copying.");
+            map_error("Memory allocation failed for copying");
         i++;
     }
     return (copy);
@@ -57,9 +57,9 @@ static void     find_player_start(t_game *data, int *start_x, int *start_y)
 
 int     is_it_reachable(t_game *data)
 {
-    t_reach r;
-    int     x_start;
-    int     y_start;
+    t_reach     r;
+    int         x_start;
+    int         y_start;
 
     r.map_copy = map_copy(data);
     r.collect = 0;
