@@ -46,6 +46,8 @@ int     main(int argc, char **argv)
     data.window = mlx_new_window(data.mlx, data.width * 64, data.height * 64, "so_long");
     images(&data);
     draw_map(&data);
-    mlx_loop(data.mlx);
+    mlx_key_hook(data.window, press_key, &data);
+    mlx_hook(data.window, 17, 0, close_game, &data);
     free_map(&data);
+    mlx_loop(data.mlx);
 }

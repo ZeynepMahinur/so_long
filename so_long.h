@@ -55,6 +55,8 @@ void    flood_fill(t_reach *r, int x, int y);
 int     is_it_reachable(t_game *data);
 void    draw_map(t_game *data);
 int     images(t_game *data);
+int     press_key(int key_code, t_game *data);
+int     close_game(t_game *data);
 
 size_t  ft_strlen(const char *str);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
