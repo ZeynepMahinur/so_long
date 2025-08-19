@@ -48,6 +48,6 @@ int     main(int argc, char **argv)
     draw_map(&data);
     mlx_key_hook(data.window, press_key, &data);
     mlx_hook(data.window, 17, 0, close_game, &data);
-    free_map(&data);
     mlx_loop(data.mlx);
+    free_map(&data);
 }

@@ -44,5 +44,6 @@ int     press_key(int key_code, t_game *data)
         move_player(data, -1, 0);
     else if (key_code == 100)
         move_player(data, 1, 0);
-    return (0);
+        mlx_clear_window(data->mlx, data->window);
+    draw_map(data);
 }
