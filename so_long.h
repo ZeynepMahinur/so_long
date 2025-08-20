@@ -43,6 +43,7 @@ typedef struct s_reach
     char    **map_copy;
     int     collect;
     int     found_exit;
+    int     height;
 }              t_reach;
 
 

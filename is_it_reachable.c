@@ -45,8 +45,8 @@ static void     find_player_start(t_game *data, int *start_x, int *start_y)
         {
             if (data->map[i][j] == 'P')
             {
-                *start_x = i;
-                *start_y = j;
+                *start_x = j;
+                *start_y = i;
                 return ;
             }
             j++;
@@ -62,6 +62,7 @@ int     is_it_reachable(t_game *data)
     int         y_start;
 
     r.map_copy = map_copy(data);
+    r.height = data->height;
     r.collect = 0;
     r.found_exit = 0;
     find_player_start(data, &x_start, &y_start);

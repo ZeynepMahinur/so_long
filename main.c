@@ -49,5 +49,4 @@ int     main(int argc, char **argv)
     mlx_key_hook(data.window, press_key, &data);
     mlx_hook(data.window, 17, 0, close_game, &data);
     mlx_loop(data.mlx);
-    free_map(&data);
 }

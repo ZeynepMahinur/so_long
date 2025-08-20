@@ -5,8 +5,8 @@ static void     count_characters(char c, t_count *count, t_game *data, int i, in
     if (c == 'P')
     {
         count->player++;
-        data->player_x = i;
-        data->player_y = j;
+        data->player_x = j;
+        data->player_y = i;
     }
     else if (c == 'C')
         count->collectible++;

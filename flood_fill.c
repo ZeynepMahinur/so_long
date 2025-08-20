@@ -6,17 +6,16 @@ void    flood_fill(t_reach *r, int x, int y)
 
     if (x < 0 || y < 0)
         return ;
-    if (x < 0 || y < 0 || !r->map_copy[x] || y >= ft_strlen(r->map_copy[x]))
+    if (x < 0 || y < 0 || y >= r->height || x >= ft_strlen(r->map_copy[y]))
         return ;
-    c = r->map_copy[x][y];
+    c = r->map_copy[y][x];
     if (c == '1' || c == 'V')
         return ;
     if (c == 'C')
         r->collect++;
     if (c == 'E')
         r->found_exit = 1;
-
-    r->map_copy[x][y] = 'V';
+    r->map_copy[y][x] = 'V';
 
     flood_fill(r, x + 1, y);
     flood_fill(r, x - 1, y);

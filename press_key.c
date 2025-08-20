@@ -2,7 +2,15 @@
 
 int  close_game(t_game *data)
 {
+    mlx_destroy_image(data->mlx, data->img.collectible_img);
+    mlx_destroy_image(data->mlx, data->img.player_img);
+    mlx_destroy_image(data->mlx, data->img.wall_img);
+    mlx_destroy_image(data->mlx, data->img.floor_img);
+    mlx_destroy_image(data->mlx, data->img.exit_img);
     mlx_destroy_window(data->mlx, data->window);
+    mlx_destroy_display(data->mlx);
+    free_map(data);
+    free(data->mlx);
     exit (0);
     return (0);
 }
@@ -44,6 +52,6 @@ int     press_key(int key_code, t_game *data)
         move_player(data, -1, 0);
     else if (key_code == 100)
         move_player(data, 1, 0);
-        mlx_clear_window(data->mlx, data->window);
+    mlx_clear_window(data->mlx, data->window);
     draw_map(data);
 }
