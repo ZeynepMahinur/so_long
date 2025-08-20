@@ -40,7 +40,7 @@ int     main(int argc, char **argv)
     map_read(argv[1], &data);
     check_map(&data);
     if (!is_it_reachable(&data))
-        map_error("Map is not solvable!");
+        if_error_exit("Map is not solvable!", &data);
     
     data.mlx = mlx_init();
     data.window = mlx_new_window(data.mlx, data.width * 64, data.height * 64, "so_long");

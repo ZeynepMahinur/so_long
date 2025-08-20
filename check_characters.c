@@ -13,7 +13,7 @@ static void     count_characters(char c, t_count *count, t_game *data, int i, in
     else if (c == 'E')
         count->exit++;
     else if (c != '1' && c != '0')
-        map_error("Invalid character in the map.");
+        if_error_exit("Invalid character in the map.", data);
 }
 
 static void     scan_map(t_game *data, t_count *count)
@@ -45,9 +45,9 @@ void    check_characters(t_game *data)
     data->collectible = count.collectible;
 
     if (count.player != 1)
-        map_error("There must be a character.");
+        if_error_exit("There must be a character.", data);
     if (count.collectible < 1)
-        map_error("There must be atleast 1 collectible.");
+        if_error_exit("There must be atleast 1 collectible.", data);
     if (count.exit != 1)
-        map_error("There must be an exit.");
+        if_error_exit("There must be an exit.", data);
 }

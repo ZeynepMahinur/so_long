@@ -7,13 +7,13 @@ static char     **map_copy(t_game *data)
 
     copy = malloc(sizeof (char *) * data->height);
     if (!copy)
-        map_error("Map allocation failed for the copy of the map.");
+        if_error_exit("Map allocation failed for the copy of the map.", data);
     i = 0;
     while (i < data->height)
     {
         copy[i] = ft_strdup(data->map[i]);
         if (!copy[i])
-            map_error("Memory allocation failed for copying");
+            if_error_exit("Memory allocation failed for copying", data);
         i++;
     }
     return (copy);
