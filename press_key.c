@@ -15,6 +15,24 @@ int  close_game(t_game *data)
     return (0);
 }
 
+static int      exit_door(t_game *data, int x, int y)
+{
+    if (data->map[y][x] == 'E')
+    {
+        if (data->collectible > 0)
+        {
+            ft_printf("You must collect all the leeks!\n");
+            return (0);
+        }
+        else
+        {
+            ft_printf("Congratulations! You won!");
+            close_game(data);
+        }
+    }
+    return (1);
+}
+
 static void    move_player(t_game *data, int px, int py)
 {
     int     x;
@@ -29,11 +47,8 @@ static void    move_player(t_game *data, int px, int py)
         data->collectible--;
         data->map[y][x] = '0';
     }
-    if (data->map[y][x] == 'E' && data->collectible == 0)
-    {
-        ft_printf("Congratulations!You won!");
-        close_game(data);
-    }
+    if (!exit_door(data, x, y))
+        return ;
     data->map[data->player_y][data->player_x] = '0';
     data->map[y][x] = 'P';
     data->player_x = x;
