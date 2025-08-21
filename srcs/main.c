@@ -1,36 +1,5 @@
 #include "so_long.h"
 
-/*int main(int argc, char **argv)
-{
-    t_game data;
-
-    if (argc != 2)
-    {
-        ft_printf("Usage: %s <map.ber>\n", argv[0]);
-        return (1);
-    }
-
-    // Map'i oku
-    if (map_read(argv[1], &data) == -1)
-        map_error("Map couldn't be read.");
-
-    // Kontrolleri yap
-    check_map(&data);
-
-    // Ulaşılabilirlik kontrolü
-    if (!is_it_reachable(&data))
-        map_error("Map is not solvable!");
-
-    ft_printf("Map is valid and reachable!\n");
-    for (int i = 0; i < data.height; i++)
-        ft_printf("%s\n", data.map[i]);
-
-    // Map'i temizle
-    free_map(&data);
-
-    return (0);
-}*/
-
 int     main(int argc, char **argv)
 {
     t_game data;

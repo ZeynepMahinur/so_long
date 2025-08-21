@@ -1,5 +1,5 @@
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_H_BONUS
+# define SO_LONG_H_BONUS
 
 #include "./minilibx-linux/mlx.h"
 #include "./get_next_line/get_next_line.h"
@@ -16,6 +16,7 @@ typedef struct s_images
     void    *floor_img;
     void    *collectible_img;
     void    *exit_img;
+    void    *player_frames[3];
 }              t_images;
 
 typedef struct s_game
@@ -28,6 +29,7 @@ typedef struct s_game
     int     collectible;
     void    *mlx;
     void    *window;
+    int     frame;
     t_images img;
 }              t_game;
 
@@ -46,17 +48,18 @@ typedef struct s_reach
     int     height;
 }              t_reach;
 
-void    free_map(t_game *data);
-int     map_read(char *filename, t_game *data);
-void    check_map(t_game *data);
-void    check_characters(t_game *data);
-void    flood_fill(t_reach *r, int x, int y);
-int     is_it_reachable(t_game *data);
-void    draw_map(t_game *data);
-void     images(t_game *data);
-int     press_key(int key_code, t_game *data);
-int     close_game(t_game *data);
-void    if_error_exit(char *err, t_game *data);
+void    free_map_bonus(t_game *data);
+int     map_read_bonus(char *filename, t_game *data);
+void    check_map_bonus(t_game *data);
+void    check_characters_bonus(t_game *data);
+void    flood_fill_bonus(t_reach *r, int x, int y);
+int     is_it_reachable_bonus(t_game *data);
+void    draw_map_bonus(t_game *data);
+void     images_bonus(t_game *data);
+int     press_key_bonus(int key_code, t_game *data);
+int     close_game_bonus(t_game *data);
+void    if_error_exit_bonus(char *err, t_game *data);
+int     animate_bonus(t_game *data);
 
 size_t  ft_strlen(const char *str);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);

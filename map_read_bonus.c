@@ -1,6 +1,6 @@
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-static void     check_ber(char *filename)
+static void     check_ber_bonus(char *filename)
 {
     int     len;
 
@@ -12,7 +12,7 @@ static void     check_ber(char *filename)
     }
 }
 
-static void     height_count(int fd, t_game *data)
+static void     height_count_bonus(int fd, t_game *data)
 {
     char    *line;
 
@@ -24,7 +24,7 @@ static void     height_count(int fd, t_game *data)
     }
 }
 
-static void     read_maplines(int fd, t_game *data)
+static void     read_maplines_bonus(int fd, t_game *data)
 {
     char    *line;
     int     i;
@@ -38,27 +38,27 @@ static void     read_maplines(int fd, t_game *data)
     }
     data->map[i] = NULL;
     if (i == 0)
-        if_error_exit("Map is unreadable.", data);
+        if_error_exit_bonus("Map is unreadable.", data);
 }
 
-int map_read(char *filename, t_game *data)
+int map_read_bonus(char *filename, t_game *data)
 {
     int     fd;
 
-    check_ber(filename);
+    check_ber_bonus(filename);
     fd = open(filename, O_RDONLY);
     if (fd < 0)
-        if_error_exit("File could not be opened.", data);
-    height_count(fd, data);
+        if_error_exit_bonus("File could not be opened.", data);
+    height_count_bonus(fd, data);
     close (fd);
     data->map = malloc(sizeof(char *) * (data->height + 1));
     if (!data->map)
-        if_error_exit("Memory allocation failed for map.", data);
+        if_error_exit_bonus("Memory allocation failed for map.", data);
     fd = open(filename, O_RDONLY);
-    read_maplines(fd, data);
+    read_maplines_bonus(fd, data);
     close (fd);
     if (fd < 0)
-        if_error_exit("File couldn't be reopened", data);
+        if_error_exit_bonus("File couldn't be reopened", data);
     data->width = ft_strlen(data->map[0]);
     return (0);
 }
