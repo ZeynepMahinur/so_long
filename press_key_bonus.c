@@ -2,6 +2,7 @@
 
 int  close_game_bonus(t_game *data)
 {
+    free_animation_bonus(data);
     mlx_destroy_image(data->mlx, data->img.collectible_img);
     mlx_destroy_image(data->mlx, data->img.player_img);
     mlx_destroy_image(data->mlx, data->img.wall_img);

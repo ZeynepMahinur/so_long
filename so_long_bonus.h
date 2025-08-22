@@ -17,6 +17,10 @@ typedef struct s_images
     void    *collectible_img;
     void    *exit_img;
     void    *player_frames[3];
+    void    *player_up[3];
+    void    *player_down[3];
+    void    *player_left[3];
+    void    *player_right[3];
 }              t_images;
 
 typedef struct s_game
@@ -60,6 +64,7 @@ int     press_key_bonus(int key_code, t_game *data);
 int     close_game_bonus(t_game *data);
 void    if_error_exit_bonus(char *err, t_game *data);
 int     animate_bonus(t_game *data);
+void    free_animation_bonus(t_game *data);
 
 size_t  ft_strlen(const char *str);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
