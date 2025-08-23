@@ -16,7 +16,7 @@ int     main(int argc, char **argv)
     data.window = mlx_new_window(data.mlx, data.width * 64, data.height * 64, "so_long");
     images_bonus(&data);
     draw_map_bonus(&data);
-    mlx_key_hook(data.window, press_key_bonus, &data);
+    mlx_hook(data.window,2, 1L << 0 ,press_key_bonus, &data);
     mlx_loop_hook(data.mlx, animate_bonus, &data);
     mlx_hook(data.window, 17, 0, close_game_bonus, &data);
     mlx_loop(data.mlx);

@@ -11,8 +11,11 @@ void     images_bonus(t_game *data)
     data->img.player_img = mlx_xpm_file_to_image(data->mlx, "textures/player.xpm", &wid, &hei);
     data->img.wall_img = mlx_xpm_file_to_image(data->mlx, "textures/wallb.xpm", &wid, &hei);
     data->img.player_frames[0] = mlx_xpm_file_to_image(data->mlx, "textures/charidle_1.xpm", &wid, &hei);
-    data->img.player_frames[1] = mlx_xpm_file_to_image(data->mlx, "textures/charidle_2.xpm", &wid, &hei);
+    data->img.player_frames[1] = mlx_xpm_file_to_image(data->mlx, "textures/deneme.xpm", &wid, &hei);
     data->img.player_frames[2] = mlx_xpm_file_to_image(data->mlx, "textures/charidle_3.xpm", &wid, &hei);
+    data->img.player_right[0] = mlx_xpm_file_to_image(data->mlx, "textures/charright1.xpm", &wid, &hei);
+    data->img.player_right[1] = mlx_xpm_file_to_image(data->mlx, "textures/charright2.xpm", &wid, &hei);
+    data->img.player_right[2] = mlx_xpm_file_to_image(data->mlx, "textures/charright3.xpm", &wid, &hei);
 }
 
 void    draw_map_bonus(t_game *data)
