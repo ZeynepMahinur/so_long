@@ -16,11 +16,11 @@ typedef struct s_images
     void    *floor_img;
     void    *collectible_img;
     void    *exit_img;
-    void    *player_frames[3];
-    void    *player_up[3];
-    void    *player_down[3];
-    void    *player_left[3];
-    void    *player_right[3];
+    void    *player_frames[4];
+    void    *player_up[4];
+    void    *player_down[4];
+    void    *player_left[4];
+    void    *player_right[4];
 }              t_images;
 
 typedef struct s_game
@@ -34,6 +34,7 @@ typedef struct s_game
     void    *mlx;
     void    *window;
     int     frame;
+    int     direction;
     t_images img;
 }              t_game;
 
@@ -61,6 +62,7 @@ int     is_it_reachable_bonus(t_game *data);
 void    draw_map_bonus(t_game *data);
 void     images_bonus(t_game *data);
 int     press_key_bonus(int key_code, t_game *data);
+int     release_key_bonus(int key_code, t_game *data);
 int     close_game_bonus(t_game *data);
 void    if_error_exit_bonus(char *err, t_game *data);
 int     animate_bonus(t_game *data);

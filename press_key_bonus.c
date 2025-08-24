@@ -1,21 +1,5 @@
 #include "so_long_bonus.h"
 
-int  close_game_bonus(t_game *data)
-{
-    free_animation_bonus(data);
-    mlx_destroy_image(data->mlx, data->img.collectible_img);
-    mlx_destroy_image(data->mlx, data->img.player_img);
-    mlx_destroy_image(data->mlx, data->img.wall_img);
-    mlx_destroy_image(data->mlx, data->img.floor_img);
-    mlx_destroy_image(data->mlx, data->img.exit_img);
-    mlx_destroy_window(data->mlx, data->window);
-    mlx_destroy_display(data->mlx);
-    free_map_bonus(data);
-    free(data->mlx);
-    exit (0);
-    return (0);
-}
-
 static int      exit_door_bonus(t_game *data, int x, int y)
 {
     if (data->map[y][x] == 'E')
@@ -56,18 +40,37 @@ static void    move_player_bonus(t_game *data, int px, int py)
     data->player_y = y;
 }
 
+int     release_key_bonus(int key_code, t_game *data)
+{
+    if (key_code = 119 || key_code == 115 || key_code == 97 || key_code  == 100)
+        data->direction = 0;
+    return (0);
+}
+
 int     press_key_bonus(int key_code, t_game *data)
 {
     if (key_code == 65307)
         close_game_bonus(data);
     else if (key_code == 119)
+    {
         move_player_bonus(data, 0, -1);
+        data->direction = 1;
+    }
     else if (key_code == 115)
+    {
         move_player_bonus(data, 0, 1);
+        data->direction = 2;
+    }
     else if (key_code == 97)
+    {
         move_player_bonus(data, -1, 0);
+        data->direction = 3;
+    }
     else if (key_code == 100)
+    {
         move_player_bonus(data, 1, 0);
+        data->direction = 4;
+    }
     mlx_clear_window(data->mlx, data->window);
     draw_map_bonus(data);
     return (0);

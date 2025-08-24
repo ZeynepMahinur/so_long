@@ -13,9 +13,25 @@ void     images_bonus(t_game *data)
     data->img.player_frames[0] = mlx_xpm_file_to_image(data->mlx, "textures/charidle_1.xpm", &wid, &hei);
     data->img.player_frames[1] = mlx_xpm_file_to_image(data->mlx, "textures/deneme.xpm", &wid, &hei);
     data->img.player_frames[2] = mlx_xpm_file_to_image(data->mlx, "textures/charidle_3.xpm", &wid, &hei);
+    data->img.player_frames[3] = mlx_xpm_file_to_image(data->mlx, "textures/charidle_4.xpm", &wid, &hei);
     data->img.player_right[0] = mlx_xpm_file_to_image(data->mlx, "textures/charright1.xpm", &wid, &hei);
     data->img.player_right[1] = mlx_xpm_file_to_image(data->mlx, "textures/charright2.xpm", &wid, &hei);
     data->img.player_right[2] = mlx_xpm_file_to_image(data->mlx, "textures/charright3.xpm", &wid, &hei);
+    data->img.player_right[3] = mlx_xpm_file_to_image(data->mlx, "textures/charright4.xpm", &wid, &hei);
+    data->img.player_left[0] = mlx_xpm_file_to_image(data->mlx, "textures/charleft1.xpm", &wid, &hei);
+    data->img.player_left[1] = mlx_xpm_file_to_image(data->mlx, "textures/charleft2.xpm", &wid, &hei);
+    data->img.player_left[2] = mlx_xpm_file_to_image(data->mlx, "textures/charleft3.xpm", &wid, &hei);
+    data->img.player_left[3] = mlx_xpm_file_to_image(data->mlx, "textures/charleft4.xpm", &wid, &hei);
+}
+
+static void    draw_player_bonus(t_game *data, int i, int j)
+{
+    if (data->direction == 0)
+        mlx_put_image_to_window(data->mlx, data->window, data->img.player_frames[data->frame], j * 64, i * 64);
+    else if (data->direction == 4)
+        mlx_put_image_to_window(data->mlx, data->window, data->img.player_right[data->frame], j * 64, i * 64);
+    else if (data->direction == 3)
+        mlx_put_image_to_window(data->mlx, data->window, data->img.player_left[data->frame], j * 64, i * 64);
 }
 
 void    draw_map_bonus(t_game *data)
@@ -34,7 +50,7 @@ void    draw_map_bonus(t_game *data)
             else if (data->map[i][j] == '0')
                 mlx_put_image_to_window(data->mlx, data->window, data->img.floor_img, j * 64, i * 64);
             else if (data->map[i][j] == 'P')
-                mlx_put_image_to_window(data->mlx, data->window, data->img.player_frames[data->frame], j * 64, i * 64);
+                draw_player_bonus(data, i, j);
             else if (data->map[i][j] == 'C')
                 mlx_put_image_to_window(data->mlx, data->window, data->img.collectible_img, j * 64, i * 64);
             else if (data->map[i][j] == 'E')
