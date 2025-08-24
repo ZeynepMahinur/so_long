@@ -22,10 +22,18 @@ void    free_animation_bonus(t_game *data)
     int     i;
 
     i = 0;
-    while (i < 3)
+    while (i < 4)
     {
         if (data->img.player_frames[i])
             mlx_destroy_image(data->mlx, data->img.player_frames[i]);
+        if (data->img.player_up[i])
+            mlx_destroy_image(data->mlx, data->img.player_up[i]);
+        if (data->img.player_down[i])
+            mlx_destroy_image(data->mlx, data->img.player_down[i]);
+        if (data->img.player_right[i])
+            mlx_destroy_image(data->mlx, data->img.player_right[i]);
+        if (data->img.player_left[i])
+            mlx_destroy_image(data->mlx, data->img.player_left[i]);
         i++;
     }
 }
