@@ -36,6 +36,7 @@ static void    move_player_bonus(t_game *data, int px, int py)
         return ;
     data->map[data->player_y][data->player_x] = '0';
     data->map[y][x] = 'P';
+    move_counter(data);
     data->player_x = x;
     data->player_y = y;
 }

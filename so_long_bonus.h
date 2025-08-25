@@ -23,6 +23,13 @@ typedef struct s_images
     void    *player_right[4];
 }              t_images;
 
+typedef struct  s_enemy
+{
+    int     x;
+    int     y;
+    int     path;
+}               t_enemy
+
 typedef struct s_game
 {
     char    **map;
@@ -67,6 +74,7 @@ int     close_game_bonus(t_game *data);
 void    if_error_exit_bonus(char *err, t_game *data);
 int     animate_bonus(t_game *data);
 void    free_animation_bonus(t_game *data);
+int     move_counter(t_game *data);
 
 size_t  ft_strlen(const char *str);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
