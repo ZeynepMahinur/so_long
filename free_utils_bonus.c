@@ -46,6 +46,7 @@ int  close_game_bonus(t_game *data)
     mlx_destroy_image(data->mlx, data->img.wall_img);
     mlx_destroy_image(data->mlx, data->img.floor_img);
     mlx_destroy_image(data->mlx, data->img.exit_img);
+    mlx_destroy_image(data->mlx, data->img.enemy_img);
     mlx_destroy_window(data->mlx, data->window);
     mlx_destroy_display(data->mlx);
     free_map_bonus(data);

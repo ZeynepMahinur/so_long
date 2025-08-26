@@ -32,6 +32,11 @@ static void    move_player_bonus(t_game *data, int px, int py)
         data->collectible--;
         data->map[y][x] = '0';
     }
+    if (data->map[y][x] == 'X')
+    {
+        ft_printf("Game over! You got caught by Teto 〣( ºΔº )〣.\n");
+        close_game_bonus(data);
+    }
     if (!exit_door_bonus(data, x, y))
         return ;
     data->map[data->player_y][data->player_x] = '0';
@@ -43,7 +48,7 @@ static void    move_player_bonus(t_game *data, int px, int py)
 
 int     release_key_bonus(int key_code, t_game *data)
 {
-    if (key_code = 119 || key_code == 115 || key_code == 97 || key_code  == 100)
+    if (key_code == 119 || key_code == 115 || key_code == 97 || key_code  == 100)
         data->direction = 0;
     return (0);
 }
@@ -72,6 +77,7 @@ int     press_key_bonus(int key_code, t_game *data)
         move_player_bonus(data, 1, 0);
         data->direction = 4;
     }
+    move_all_enemy(data);
     mlx_clear_window(data->mlx, data->window);
     draw_map_bonus(data);
     return (0);

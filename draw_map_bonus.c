@@ -37,6 +37,7 @@ void     images_bonus(t_game *data)
     data->img.floor_img = mlx_xpm_file_to_image(data->mlx, "textures/floor.xpm", &wid, &hei);
     data->img.player_img = mlx_xpm_file_to_image(data->mlx, "textures/player.xpm", &wid, &hei);
     data->img.wall_img = mlx_xpm_file_to_image(data->mlx, "textures/wallb.xpm", &wid, &hei);
+    data->img.enemy_img = mlx_xpm_file_to_image(data->mlx, "textures/enemy.xpm", &wid, &hei);
     load_player_frames(data);
 }
 
@@ -75,6 +76,8 @@ void    draw_map_bonus(t_game *data)
                 mlx_put_image_to_window(data->mlx, data->window, data->img.collectible_img, j * 64, i * 64);
             else if (data->map[i][j] == 'E')
                 mlx_put_image_to_window(data->mlx, data->window, data->img.exit_img, j * 64, i * 64);
+            else if (data->map[i][j] == 'X')
+                mlx_put_image_to_window(data->mlx, data->window, data->img.enemy_img, j * 64, i * 64);
             j++;
         }
         i++;

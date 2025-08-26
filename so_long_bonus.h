@@ -21,14 +21,16 @@ typedef struct s_images
     void    *player_down[4];
     void    *player_left[4];
     void    *player_right[4];
+    void    *enemy_img;
 }              t_images;
 
 typedef struct  s_enemy
 {
     int     x;
     int     y;
-    int     path;
-}               t_enemy
+    int     path_x;
+    int     path_y;
+}               t_enemy;
 
 typedef struct s_game
 {
@@ -37,6 +39,10 @@ typedef struct s_game
     int     width;
     int     player_x;
     int     player_y;
+    int     enemy_x;
+    int     enemy_y;
+    int     enemy_count;
+    t_enemy *enemies;
     int     collectible;
     void    *mlx;
     void    *window;
@@ -50,6 +56,7 @@ typedef struct s_count
     int     player;
     int     collectible;
     int     exit;
+    int     enemy;
 }              t_count;
 
 typedef struct s_reach
@@ -75,6 +82,8 @@ void    if_error_exit_bonus(char *err, t_game *data);
 int     animate_bonus(t_game *data);
 void    free_animation_bonus(t_game *data);
 int     move_counter(t_game *data);
+void    move_all_enemy(t_game *data);
+void    check_enemies(t_game *data);
 
 size_t  ft_strlen(const char *str);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
