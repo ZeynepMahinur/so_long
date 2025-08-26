@@ -13,27 +13,27 @@ void    check_enemies(t_game *data)
     }
 }
 
-static void     count_characters_bonus(char c, t_count *count, t_game *data, int i, int j, int *enemy_index, int write_enemies)
+static void     cnt_chars(char c, t_count *count, t_game *data, t_args *args)
 {
     if (c == 'P')
     {
-        if (!write_enemies)
+        if (!args->wr_en)
         {
             count->player++;
-            data->player_x = j;
-            data->player_y = i;
+            data->player_x = args->j;
+            data->player_y = args->i;
         }
     }
     else if (c == 'C')
     {
-        if (!write_enemies)
+        if (!args->wr_en)
         {
             count->collectible++;
         }
     }
     else if (c == 'E')
     {
-        if (!write_enemies)
+        if (!args->wr_en)
         {
             count->exit++;
         }
@@ -41,23 +41,24 @@ static void     count_characters_bonus(char c, t_count *count, t_game *data, int
     else if (c == 'X')
     {
         count->enemy++;
-        if (write_enemies)
+        if (args->wr_en)
         {
-            data->enemies[*enemy_index].x = j;
-            data->enemies[*enemy_index].y = i;
-            data->enemies[*enemy_index].path_x = 1;
-            data->enemies[*enemy_index].path_y = 1;
-            (*enemy_index)++;
+            data->enemies[*(args->enemy_i)].x = args->j;
+            data->enemies[*(args->enemy_i)].y = args->i;
+            data->enemies[*(args->enemy_i)].path_x = 1;
+            data->enemies[*(args->enemy_i)].path_y = 1;
+            (*(args->enemy_i))++;
         }
     }
     else if (c != '1' && c != '0')
         if_error_exit_bonus("Invalid character in the map.", data);
 }
 
-static void     scan_map_bonus(t_game *data, t_count *count, int *enemy_index, int write_enemies)
+static void     scan_map(t_game *data, t_count *count, int *enemy_i, int wr_en)
 {
     int     i;
     int     j;
+    t_args  args;
 
     i = 0;
     while (i < data->height)
@@ -65,7 +66,11 @@ static void     scan_map_bonus(t_game *data, t_count *count, int *enemy_index, i
         j = 0;
         while (j < data->width)
         {
-            count_characters_bonus(data->map[i][j], count, data, i, j, enemy_index, write_enemies);
+            args.i = i;
+            args.j = j;
+            args.enemy_i = enemy_i;
+            args.wr_en = wr_en;
+            cnt_chars(data->map[i][j], count, data, &args);
             j++;
         }
         i++;
@@ -82,12 +87,12 @@ void    check_characters_bonus(t_game *data)
     count.exit = 0;
     count.enemy = 0;
     enemy_index = 0;
-    scan_map_bonus(data, &count, &enemy_index, 0);
+    scan_map(data, &count, &enemy_index, 0);
     if (count.enemy > 0)
         data->enemies = malloc(sizeof(t_enemy) * count.enemy);
     data->enemy_count = count.enemy;
     enemy_index = 0;
-    scan_map_bonus(data, &count, &enemy_index, 1);
+    scan_map(data, &count, &enemy_index, 1);
     data->collectible = count.collectible;
     if (count.player != 1)
         if_error_exit_bonus("There must be a character.", data);

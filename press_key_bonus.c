@@ -44,6 +44,8 @@ static void    move_player_bonus(t_game *data, int px, int py)
     move_counter(data);
     data->player_x = x;
     data->player_y = y;
+    if (data->ded)
+        return ;
 }
 
 int     release_key_bonus(int key_code, t_game *data)

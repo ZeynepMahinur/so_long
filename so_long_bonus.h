@@ -48,6 +48,7 @@ typedef struct s_game
     void    *window;
     int     frame;
     int     direction;
+    int     ded;
     t_images img;
 }              t_game;
 
@@ -67,6 +68,14 @@ typedef struct s_reach
     int     height;
 }              t_reach;
 
+typedef struct s_args
+{
+    int     i;
+    int     j;
+    int     *enemy_i;
+    int     wr_en;
+}              t_args;
+
 void    free_map_bonus(t_game *data);
 int     map_read_bonus(char *filename, t_game *data);
 void    check_map_bonus(t_game *data);
@@ -84,6 +93,11 @@ void    free_animation_bonus(t_game *data);
 int     move_counter(t_game *data);
 void    move_all_enemy(t_game *data);
 void    check_enemies(t_game *data);
+int     my_abs(int n);
+int     move_towards(int current, int target);
+int     if_enemy_present(t_game *data, int x, int y);
+void    mv_en_to_pl(t_game *data, t_enemy *enemy);
+
 
 size_t  ft_strlen(const char *str);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
