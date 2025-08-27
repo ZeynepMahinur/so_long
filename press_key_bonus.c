@@ -1,86 +1,107 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   press_key_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/27 16:31:17 by zarikan           #+#    #+#             */
+/*   Updated: 2025/08/27 17:14:38 by zarikan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
-static int      exit_door_bonus(t_game *data, int x, int y)
+static int	exit_door_bonus(t_game *data, int x, int y)
 {
-    if (data->map[y][x] == 'E')
-    {
-        if (data->collectible > 0)
-        {
-            ft_printf("You must collect all the leeks!\n");
-            return (0);
-        }
-        else
-        {
-            ft_printf("Congratulations! You won!");
-            close_game_bonus(data);
-        }
-    }
-    return (1);
+	if (data->map[y][x] == 'E')
+	{
+		if (data->collectible > 0)
+		{
+			ft_printf("You must collect all the leeks!\n");
+			return (0);
+		}
+		else
+		{
+			ft_printf("Congratulations! You won!");
+			close_game_bonus(data);
+		}
+	}
+	return (1);
 }
 
-static void    move_player_bonus(t_game *data, int px, int py)
+static int	move_conditions(t_game *data, int x, int y)
 {
-    int     x;
-    int     y;
-
-    x = data->player_x + px;
-    y = data->player_y + py;
-    if (data->map[y][x] == '1')
-        return ;
-    if (data->map[y][x] == 'C')
-    {
-        data->collectible--;
-        data->map[y][x] = '0';
-    }
-    if (data->map[y][x] == 'X')
-    {
-        ft_printf("Game over! You got caught by Teto 〣( ºΔº )〣.\n");
-        close_game_bonus(data);
-    }
-    if (!exit_door_bonus(data, x, y))
-        return ;
-    data->map[data->player_y][data->player_x] = '0';
-    data->map[y][x] = 'P';
-    move_counter(data);
-    data->player_x = x;
-    data->player_y = y;
-    if (data->ded)
-        return ;
+	if (data->map[y][x] == '1')
+		return (0);
+	if (data->map[y][x] == 'C')
+	{
+		data->collectible--;
+		data->map[y][x] = '0';
+	}
+	if (data->map[y][x] == 'X')
+	{
+		ft_printf("Game over! You got caught by Teto 〣( ºΔº )〣.\n");
+		close_game_bonus(data);
+	}
+	if (!exit_door_bonus(data, x, y))
+		return (0);
+	return (1);
 }
 
-int     release_key_bonus(int key_code, t_game *data)
+static void	move_player_bonus(t_game *data, int px, int py)
 {
-    if (key_code == 119 || key_code == 115 || key_code == 97 || key_code  == 100)
-        data->direction = 0;
-    return (0);
+	int	x;
+	int	y;
+	int	result;
+
+	x = data->player_x + px;
+	y = data->player_y + py;
+	result = move_conditions(data, x, y);
+	if (result == 0)
+		return ;
+	if (result == -1)
+		return ;
+	data->map[data->player_y][data->player_x] = '0';
+	data->map[y][x] = 'P';
+	move_counter(data);
+	data->player_x = x;
+	data->player_y = y;
+	if (data->ded)
+		return ;
 }
 
-int     press_key_bonus(int key_code, t_game *data)
+static int	press_key_bonus_sd(int key_cd, t_game *data)
 {
-    if (key_code == 65307)
-        close_game_bonus(data);
-    else if (key_code == 119)
-    {
-        move_player_bonus(data, 0, -1);
-        data->direction = 1;
-    }
-    else if (key_code == 115)
-    {
-        move_player_bonus(data, 0, 1);
-        data->direction = 2;
-    }
-    else if (key_code == 97)
-    {
-        move_player_bonus(data, -1, 0);
-        data->direction = 3;
-    }
-    else if (key_code == 100)
-    {
-        move_player_bonus(data, 1, 0);
-        data->direction = 4;
-    }
-    move_all_enemy(data);
-    mlx_clear_window(data->mlx, data->window);
-    draw_map_bonus(data);
-    return (0);
+	if (key_cd == 97)
+	{
+		move_player_bonus(data, -1, 0);
+		data->direction = 3;
+	}
+	else if (key_cd == 100)
+	{
+		move_player_bonus(data, 1, 0);
+		data->direction = 4;
+	}
+}
+
+int	press_key_bonus(int key_cd, t_game *data)
+{
+	if (key_cd == 65307)
+		close_game_bonus(data);
+	else if (key_cd == 119)
+	{
+		move_player_bonus(data, 0, -1);
+		data->direction = 1;
+	}
+	else if (key_cd == 115)
+	{
+		move_player_bonus(data, 0, 1);
+		data->direction = 2;
+	}
+	press_key_bonus_sd(key_cd, data);
+	move_all_enemy(data);
+	mlx_clear_window(data->mlx, data->window);
+	draw_map_bonus(data);
+	return (0);
 }
