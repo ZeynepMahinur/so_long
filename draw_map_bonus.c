@@ -27,31 +27,44 @@ void	images_bonus(t_game *data)
 			"textures/player.xpm", &wid, &hei);
 	data->img.wall_img = mlx_xpm_file_to_image(data->mlx,
 			"textures/wallb.xpm", &wid, &hei);
-	data->img.enemy_img = mlx_xpm_file_to_image(data->mlx,
-			"textures/enemy.xpm", &wid, &hei);
 	load_player_frames(data);
 	load_player_frames2(data);
+	load_enemy_frames(data);
 }
 
 static void	draw_player_bonus(t_game *data, int i, int j)
 {
 	if (data->direction == 0)
 		mlx_put_image_to_window(data->mlx, data->window,
-			data->img.player_frames[data->frame], j * 64, i * 64);
+	data->img.player_frames[data->frame], j * 64, i * 64);
 	else if (data->direction == 4)
-		mlx_put_image_to_window(data->mlx, data->window,
-			data->img.player_right[data->frame], j * 64, i * 64);
-	else if (data->direction == 3)
-		mlx_put_image_to_window(data->mlx, data->window,
-			data->img.player_left[data->frame], j * 64, i * 64);
+	mlx_put_image_to_window(data->mlx, data->window,
+data->img.player_right[data->frame], j * 64, i * 64);
+else if (data->direction == 3)
+mlx_put_image_to_window(data->mlx, data->window,
+	data->img.player_left[data->frame], j * 64, i * 64);
 	else if (data->direction == 2)
-		mlx_put_image_to_window(data->mlx, data->window,
-			data->img.player_down[data->frame], j * 64, i * 64);
-	else if (data->direction == 1)
-		mlx_put_image_to_window(data->mlx, data->window,
-			data->img.player_up[data->frame], j * 64, i * 64);
+	mlx_put_image_to_window(data->mlx, data->window,
+data->img.player_down[data->frame], j * 64, i * 64);
+else if (data->direction == 1)
+mlx_put_image_to_window(data->mlx, data->window,
+	data->img.player_up[data->frame], j * 64, i * 64);
 }
 
+static void	draw_enemies(t_game *data)
+{
+	t_enemy *ene;
+	int	i;
+
+	i = 0;
+	while (i < data->enemy_count)
+	{
+		ene = &data->enemies[i];
+		mlx_put_image_to_window(data->mlx, data->window, 
+			data->img.enemy_frames[ene->frame], ene->x * 64, ene->y * 64);
+		i++;
+	}
+}
 static void	draw_map_bonus2(t_game *data)
 {
 	int	i;
@@ -75,20 +88,6 @@ static void	draw_map_bonus2(t_game *data)
 	}
 }
 
-static void	draw_enemies(t_game *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->enemy_count)
-	{
-		mlx_put_image_to_window(data->mlx, data->window,
-			data->img.enemy_img,
-			data->enemies[i].x * 64,
-			data->enemies[i].y * 64);
-		i++;
-	}
-}
 
 void	draw_map_bonus(t_game *data)
 {

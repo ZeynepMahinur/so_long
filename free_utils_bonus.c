@@ -36,6 +36,8 @@ void	free_animation_bonus(t_game *data)
 	i = 0;
 	while (i < 4)
 	{
+		if (data->img.enemy_frames[i])
+			mlx_destroy_image(data->mlx, data->img.enemy_frames[i]);
 		if (data->img.player_frames[i])
 			mlx_destroy_image(data->mlx, data->img.player_frames[i]);
 		if (data->img.player_up[i])
@@ -58,7 +60,6 @@ int	close_game_bonus(t_game *data)
 	mlx_destroy_image(data->mlx, data->img.wall_img);
 	mlx_destroy_image(data->mlx, data->img.floor_img);
 	mlx_destroy_image(data->mlx, data->img.exit_img);
-	mlx_destroy_image(data->mlx, data->img.enemy_img);
 	mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);
 	free_map_bonus(data);

@@ -33,6 +33,7 @@ typedef struct s_image
 	void	*player_down[4];
 	void	*player_left[4];
 	void	*player_right[4];
+	void	*enemy_frames[4];
 	void	*enemy_img;
 }		t_image;
 
@@ -42,6 +43,8 @@ typedef struct s_enemy
 	int	y;
 	int	path_x;
 	int	path_y;
+	int	direction;
+	int	frame;
 }		t_enemy;
 
 typedef struct s_game
@@ -111,6 +114,7 @@ int		if_enemy_present(t_game *data, int x, int y);
 void	mv_en_to_pl(t_game *data, t_enemy *enemy);
 void	load_player_frames(t_game *data);
 void	load_player_frames2(t_game *data);
+void	load_enemy_frames(t_game *data);
 
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

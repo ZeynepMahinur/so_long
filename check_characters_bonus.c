@@ -45,6 +45,7 @@ static void	cnt_chars2(char c, t_count *count, t_game *data, t_args *args)
 			data->enemies[*(args->enemy_i)].y = args->i;
 			data->enemies[*(args->enemy_i)].path_x = 1;
 			data->enemies[*(args->enemy_i)].path_y = 1;
+			data->enemies[*(args->enemy_i)].frame = 0;
 			(*(args->enemy_i))++;
 		}
 	}
@@ -107,7 +108,7 @@ void	check_characters_bonus(t_game *data)
 	enemy_index = 0;
 	scan_map(data, &count, &enemy_index, 0);
 	if (count.enemy > 0)
-		data->enemies = malloc(sizeof(t_enemy) * count.enemy);
+		data->enemies = ft_calloc(count.enemy, sizeof(t_enemy));
 	data->enemy_count = count.enemy;
 	enemy_index = 0;
 	scan_map(data, &count, &enemy_index, 1);

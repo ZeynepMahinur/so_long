@@ -12,6 +12,21 @@
 
 #include "so_long_bonus.h"
 
+void	load_enemy_frames(t_game*data)
+{
+	int	wid;
+	int	hei;
+
+	data->img.enemy_frames[0] = mlx_xpm_file_to_image(data->mlx,
+			"textures/enemy_idle1.xpm", &wid, &hei);
+	data->img.enemy_frames[1] = mlx_xpm_file_to_image(data->mlx,
+			"textures/enemy_idle2.xpm", &wid, &hei);
+	data->img.enemy_frames[2] = mlx_xpm_file_to_image(data->mlx,
+			"textures/enemy_idle3.xpm", &wid, &hei);
+	data->img.enemy_frames[3] = mlx_xpm_file_to_image(data->mlx,
+			"textures/enemy_idle4.xpm", &wid, &hei);
+}
+
 void	load_player_frames2(t_game *data)
 {
 	int	wid;
@@ -47,7 +62,7 @@ void	load_player_frames(t_game *data)
 	data->img.player_frames[0] = mlx_xpm_file_to_image(data->mlx,
 			"textures/charidle_1.xpm", &wid, &hei);
 	data->img.player_frames[1] = mlx_xpm_file_to_image(data->mlx,
-			"textures/deneme.xpm", &wid, &hei);
+			"textures/charidle_2.xpm", &wid, &hei);
 	data->img.player_frames[2] = mlx_xpm_file_to_image(data->mlx,
 			"textures/charidle_3.xpm", &wid, &hei);
 	data->img.player_frames[3] = mlx_xpm_file_to_image(data->mlx,
@@ -65,3 +80,5 @@ void	load_player_frames(t_game *data)
 	data->img.player_left[1] = mlx_xpm_file_to_image(data->mlx,
 			"textures/charleft2.xpm", &wid, &hei);
 }
+
+
