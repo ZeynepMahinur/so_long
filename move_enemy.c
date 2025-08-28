@@ -16,8 +16,9 @@ int	move_towards(int current, int target)
 {
 	if (target > current)
 		return (current + 1);
-	else
+	else if (target < current)
 		return (current - 1);
+	return (current);
 }
 
 int	if_enemy_present(t_game *data, int x, int y)

@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_images
+typedef struct s_image
 {
 	void	*player_img;
 	void	*wall_img;
@@ -34,7 +34,7 @@ typedef struct s_images
 	void	*player_left[4];
 	void	*player_right[4];
 	void	*enemy_img;
-}		t_images;
+}		t_image;
 
 typedef struct s_enemy
 {

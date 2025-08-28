@@ -69,11 +69,23 @@ static void	draw_map_bonus2(t_game *data)
 			else if (data->map[i][j] == 'E')
 				mlx_put_image_to_window(data->mlx, data->window,
 					data->img.exit_img, j * 64, i * 64);
-			else if (data->map[i][j] == 'X')
-				mlx_put_image_to_window(data->mlx, data->window,
-					data->img.enemy_img, j * 64, i * 64);
 			j++;
 		}
+		i++;
+	}
+}
+
+static void	draw_enemies(t_game *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->enemy_count)
+	{
+		mlx_put_image_to_window(data->mlx, data->window,
+			data->img.enemy_img,
+			data->enemies[i].x * 64,
+			data->enemies[i].y * 64);
 		i++;
 	}
 }
@@ -89,12 +101,11 @@ void	draw_map_bonus(t_game *data)
 		j = 0;
 		while (j < data->width)
 		{
+			mlx_put_image_to_window(data->mlx, data->window,
+					data->img.floor_img, j * 64, i * 64);
 			if (data->map[i][j] == '1')
 				mlx_put_image_to_window(data->mlx, data->window,
 					data->img.wall_img, j * 64, i * 64);
-			else if (data->map[i][j] == '0')
-				mlx_put_image_to_window(data->mlx, data->window,
-					data->img.floor_img, j * 64, i * 64);
 			else if (data->map[i][j] == 'P')
 				draw_player_bonus(data, i, j);
 			j++;
@@ -102,4 +113,5 @@ void	draw_map_bonus(t_game *data)
 		i++;
 	}
 	draw_map_bonus2(data);
+	draw_enemies(data);
 }
