@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	check_enemies(t_game *data)
 {
@@ -96,7 +96,7 @@ static void	scan_map(t_game *data, t_count *count, int *enemy_i, int wr_en)
 	}
 }
 
-void	check_characters_bonus(t_game *data)
+void	check_characters(t_game *data)
 {
 	t_count	count;
 	int		enemy_index;

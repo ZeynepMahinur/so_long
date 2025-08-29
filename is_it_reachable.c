@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-static char	**map_copy_bonus(t_game *data)
+static char	**map_copy(t_game *data)
 {
 	char	**copy;
 	int		i;
@@ -31,7 +31,7 @@ static char	**map_copy_bonus(t_game *data)
 	return (copy);
 }
 
-static void	free_map_copy_bonus(char **copy, int height)
+static void	free_map_copy(char **copy, int height)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ static void	free_map_copy_bonus(char **copy, int height)
 	free (copy);
 }
 
-static void	find_player_start_bonus(t_game *data, int *start_x, int *start_y)
+static void	find_player_start(t_game *data, int *start_x, int *start_y)
 {
 	int	i;
 	int	j;
@@ -67,18 +67,18 @@ static void	find_player_start_bonus(t_game *data, int *start_x, int *start_y)
 	}
 }
 
-int	is_it_reachable_bonus(t_game *data)
+int	is_it_reachable(t_game *data)
 {
 	t_reach	r;
 	int		x_start;
 	int		y_start;
 
-	r.map_copy = map_copy_bonus(data);
+	r.map_copy = map_copy(data);
 	r.height = data->height;
 	r.collect = 0;
 	r.found_exit = 0;
-	find_player_start_bonus(data, &x_start, &y_start);
-	flood_fill_bonus(&r, x_start, y_start);
-	free_map_copy_bonus(r.map_copy, data->height);
+	find_player_start(data, &x_start, &y_start);
+	flood_fill(&r, x_start, y_start);
+	free_map_copy(r.map_copy, data->height);
 	return (r.found_exit && r.collect == data->collectible);
 }

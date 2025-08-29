@@ -3,37 +3,38 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I.
 
 MLX_FLAGS = -L./minilibx-linux -lmlx -lXext -lX11 -lm
+LIBFT = ./libft/libft.a
+PRINTF = ./printf/libftprintf.a
 
-SRCS = srcs/check_characters.c srcs/check_errors.c srcs/check_map.c srcs/draw_map.c\
-srcs/flood_fill.c srcs/free_utils.c srcs/is_it_reachable.c srcs/press_key.c srcs/map_read.c srcs/main.c
-
-SRCS_BONUS = animate_bonus.c check_characters_bonus.c check_map_bonus.c draw_map_bonus.c check_errors_bonus.c flood_fill_bonus.c \
-free_utils_bonus.c is_it_reachable_bonus.c map_read_bonus.c press_key_bonus.c main_bonus.c 
+SRCS = animate.c check_characters.c check_errors.c check_map.c draw_map.c flood_fill.c free_utils.c is_it_reachable.c\
+load_player_frames.c main.c map_read.c move_counter.c move_enemy.c mv_en_to_pl.c press_key.c release_key.c\
+get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-
 NAME = so_long
 
-NAME_BONUS = so_long_bonus
+all: $(NAME) $(LIBFT)
 
-all: $(NAME)
+$(LIBFT):
+	make -C ./libft
 
-bonus: $(NAME_BONUS)
+$(PRINTF):
+	make -C ./printf
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
-
-$(NAME_BONUS): $(OBJS_BONUS)
-	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) $(MLX_FLAGS)
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) -L./libft -lft -L./printf -lftprintf
 
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS)
+	make -C ./libft clean
+	make -C ./printf clean
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -f $(NAME)
+	make -C ./libft fclean
+	make -C ./printf fclean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

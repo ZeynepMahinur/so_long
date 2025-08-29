@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	free_map_bonus(t_game *data)
+void	free_map(t_game *data)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ void	free_map_bonus(t_game *data)
 	data->map = NULL;
 }
 
-void	free_animation_bonus(t_game *data)
+void	free_animation(t_game *data)
 {
 	int	i;
 
@@ -52,9 +52,9 @@ void	free_animation_bonus(t_game *data)
 	}
 }
 
-int	close_game_bonus(t_game *data)
+int	close_game(t_game *data)
 {
-	free_animation_bonus(data);
+	free_animation(data);
 	mlx_destroy_image(data->mlx, data->img.collectible_img);
 	mlx_destroy_image(data->mlx, data->img.player_img);
 	mlx_destroy_image(data->mlx, data->img.wall_img);
@@ -62,7 +62,7 @@ int	close_game_bonus(t_game *data)
 	mlx_destroy_image(data->mlx, data->img.exit_img);
 	mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);
-	free_map_bonus(data);
+	free_map(data);
 	free(data->enemies);
 	free(data->mlx);
 	exit (0);

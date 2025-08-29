@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	images_bonus(t_game *data)
+void	images(t_game *data)
 {
 	int	wid;
 	int	hei;
@@ -32,7 +32,7 @@ void	images_bonus(t_game *data)
 	load_enemy_frames(data);
 }
 
-static void	draw_player_bonus(t_game *data, int i, int j)
+static void	draw_player(t_game *data, int i, int j)
 {
 	if (data->direction == 0)
 		mlx_put_image_to_window(data->mlx, data->window,
@@ -65,7 +65,7 @@ static void	draw_enemies(t_game *data)
 		i++;
 	}
 }
-static void	draw_map_bonus2(t_game *data)
+static void	draw_map2(t_game *data)
 {
 	int	i;
 	int	j;
@@ -89,7 +89,7 @@ static void	draw_map_bonus2(t_game *data)
 }
 
 
-void	draw_map_bonus(t_game *data)
+void	draw_map(t_game *data)
 {
 	int	i;
 	int	j;
@@ -106,11 +106,11 @@ void	draw_map_bonus(t_game *data)
 				mlx_put_image_to_window(data->mlx, data->window,
 					data->img.wall_img, j * 64, i * 64);
 			else if (data->map[i][j] == 'P')
-				draw_player_bonus(data, i, j);
+				draw_player(data, i, j);
 			j++;
 		}
 		i++;
 	}
-	draw_map_bonus2(data);
+	draw_map2(data);
 	draw_enemies(data);
 }

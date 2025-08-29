@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-static void	check_rectangle_bonus(t_game *data)
+static void	check_rectangle(t_game *data)
 {
 	int	len;
 	int	i;
@@ -31,7 +31,7 @@ static void	check_rectangle_bonus(t_game *data)
 	}
 }
 
-static void	check_wall_limit_bonus(t_game *data)
+static void	check_wall_limit(t_game *data)
 {
 	int	i;
 
@@ -55,9 +55,9 @@ static void	check_wall_limit_bonus(t_game *data)
 	}
 }
 
-void	check_map_bonus(t_game *data)
+void	check_map(t_game *data)
 {
-	check_rectangle_bonus(data);
-	check_wall_limit_bonus(data);
-	check_characters_bonus(data);
+	check_rectangle(data);
+	check_wall_limit(data);
+	check_characters(data);
 }

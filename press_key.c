@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-static int	exit_door_bonus(t_game *data, int x, int y)
+static int	exit_door(t_game *data, int x, int y)
 {
 	if (data->map[y][x] == 'E')
 	{
@@ -24,7 +24,7 @@ static int	exit_door_bonus(t_game *data, int x, int y)
 		else
 		{
 			ft_printf("Congratulations! You won!");
-			close_game_bonus(data);
+			close_game(data);
 		}
 	}
 	return (1);
@@ -42,14 +42,14 @@ static int	move_conditions(t_game *data, int x, int y)
 	if (data->map[y][x] == 'X')
 	{
 		ft_printf("Game over! You got caught by Teto 〣( ºΔº )〣.\n");
-		close_game_bonus(data);
+		close_game(data);
 	}
-	if (!exit_door_bonus(data, x, y))
+	if (!exit_door(data, x, y))
 		return (0);
 	return (1);
 }
 
-static void	move_player_bonus(t_game *data, int px, int py)
+static void	move_player(t_game *data, int px, int py)
 {
 	int	x;
 	int	y;
@@ -71,37 +71,38 @@ static void	move_player_bonus(t_game *data, int px, int py)
 		return ;
 }
 
-static int	press_key_bonus_sd(int key_cd, t_game *data)
+static int	press_key_sd(int key_cd, t_game *data)
 {
 	if (key_cd == 97)
 	{
-		move_player_bonus(data, -1, 0);
+		move_player(data, -1, 0);
 		data->direction = 3;
 	}
 	else if (key_cd == 100)
 	{
-		move_player_bonus(data, 1, 0);
+		move_player(data, 1, 0);
 		data->direction = 4;
 	}
+	return (0);
 }
 
-int	press_key_bonus(int key_cd, t_game *data)
+int	press_key(int key_cd, t_game *data)
 {
 	if (key_cd == 65307)
-		close_game_bonus(data);
+		close_game(data);
 	else if (key_cd == 119)
 	{
-		move_player_bonus(data, 0, -1);
+		move_player(data, 0, -1);
 		data->direction = 1;
 	}
 	else if (key_cd == 115)
 	{
-		move_player_bonus(data, 0, 1);
+		move_player(data, 0, 1);
 		data->direction = 2;
 	}
-	press_key_bonus_sd(key_cd, data);
+	press_key_sd(key_cd, data);
 	move_all_enemy(data);
 	mlx_clear_window(data->mlx, data->window);
-	draw_map_bonus(data);
+	draw_map(data);
 	return (0);
 }

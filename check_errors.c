@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-static void	map_error_bonus(char *err)
+static void	map_error(char *err)
 {
 	ft_printf("Error! %s\n", err);
 }
 
 void	if_error_exit(char *err, t_game *data)
 {
-	map_error_bonus(err);
-	free_map_bonus(data);
+	map_error(err);
+	free_map(data);
 	exit (1);
 }

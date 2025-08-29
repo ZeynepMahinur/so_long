@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 static void	next_pos(t_game *data, t_enemy *enemy, int *next_x, int *next_y)
 {
@@ -66,7 +66,7 @@ void	mv_en_to_pl(t_game *data, t_enemy *enemy)
 	{
 		ft_printf("Game over! You got caught by Teto 〣( ºΔº )〣.\n");
 		data->ded = 1;
-		close_game_bonus(data);
+		close_game(data);
 	}
 	updt_map(enemy, next_x, next_y);
 }

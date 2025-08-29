@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	flood_fill_bonus(t_reach *r, int x, int y)
+void	flood_fill(t_reach *r, int x, int y)
 {
 	char	c;
 
@@ -28,8 +28,8 @@ void	flood_fill_bonus(t_reach *r, int x, int y)
 	if (c == 'E')
 		r->found_exit = 1;
 	r->map_copy[y][x] = 'V';
-	flood_fill_bonus(r, x + 1, y);
-	flood_fill_bonus(r, x - 1, y);
-	flood_fill_bonus(r, x, y + 1);
-	flood_fill_bonus(r, x, y - 1);
+	flood_fill(r, x + 1, y);
+	flood_fill(r, x - 1, y);
+	flood_fill(r, x, y + 1);
+	flood_fill(r, x, y - 1);
 }

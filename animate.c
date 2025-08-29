@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 static int animate_enemy(t_game *data)
 {
@@ -27,7 +27,7 @@ static int animate_enemy(t_game *data)
 	return (0);
 }
 
-int	animate_bonus(t_game *data)
+int	animate(t_game *data)
 {
 	static int	count;
 	int			reference_map_size;
@@ -48,7 +48,7 @@ int	animate_bonus(t_game *data)
 		animate_enemy(data);
 		count = 0;
 	}
-	draw_map_bonus(data);
+	draw_map(data);
 	return (0);
 }
 

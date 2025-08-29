@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_BONUS_H
-# define SO_LONG_BONUS_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "./minilibx-linux/mlx.h"
 # include "./get_next_line/get_next_line.h"
@@ -91,20 +91,20 @@ typedef struct s_args
 	int	wr_en;
 }		t_args;
 
-void	free_map_bonus(t_game *data);
-int		map_read_bonus(char *filename, t_game *data);
-void	check_map_bonus(t_game *data);
-void	check_characters_bonus(t_game *data);
-void	flood_fill_bonus(t_reach *r, int x, int y);
-int		is_it_reachable_bonus(t_game *data);
-void	draw_map_bonus(t_game *data);
-void	images_bonus(t_game *data);
-int		press_key_bonus(int key_code, t_game *data);
-int		release_key_bonus(int key_code, t_game *data);
-int		close_game_bonus(t_game *data);
+void	free_map(t_game *data);
+int		map_read(char *filename, t_game *data);
+void	check_map(t_game *data);
+void	check_characters(t_game *data);
+void	flood_fill(t_reach *r, int x, int y);
+int		is_it_reachable(t_game *data);
+void	draw_map(t_game *data);
+void	images(t_game *data);
+int		press_key(int key_code, t_game *data);
+int		release_key(int key_code, t_game *data);
+int		close_game(t_game *data);
 void	if_error_exit(char *err, t_game *data);
-int		animate_bonus(t_game *data);
-void	free_animation_bonus(t_game *data);
+int		animate(t_game *data);
+void	free_animation(t_game *data);
 int		move_counter(t_game *data);
 void	move_all_enemy(t_game *data);
 void	check_enemies(t_game *data);

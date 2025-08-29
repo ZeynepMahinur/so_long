@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 int	move_counter(t_game *data)
 {
 	static int	moves;
 
+	(void)data;
 	moves++;
 	ft_printf("Moves: %d\n", moves);
 	return (moves);
