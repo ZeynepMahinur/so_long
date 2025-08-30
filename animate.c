@@ -39,7 +39,7 @@ int	animate(t_game *data)
 	current_map_size = (data->height * data->width);
 	count++;
 	speed_factor = (double)reference_map_size / (double)current_map_size;
-	threshold = (int)(100 * speed_factor);
+	threshold = (int)(50 * speed_factor);
 	if (threshold < 1)
 		threshold = 1;
 	if (count >= threshold)

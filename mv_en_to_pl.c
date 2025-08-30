@@ -48,7 +48,8 @@ static int	en_hit_pl(t_game *data, int x, int y)
 
 static void	updt_map (t_game *data, t_enemy *enemy, int next_x, int next_y)
 {
-	data->map[enemy->y][enemy->x] = '0';
+	if (data->map[enemy->y][enemy->x] != 'C')
+		data->map[enemy->y][enemy->x] = '0';
 	enemy->x = next_x;
 	enemy->y = next_y;
 }

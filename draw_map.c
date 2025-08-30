@@ -87,7 +87,8 @@ void	draw_map(t_game *data)
 		j = 0;
 		while (j < data->width)
 		{
-			mlx_put_image_to_window(data->mlx, data->window,
+			if (data->map[i][j] ==  '0')
+				mlx_put_image_to_window(data->mlx, data->window,
 					data->img.floor_img, j * 64, i * 64);
 			if (data->map[i][j] == '1')
 				mlx_put_image_to_window(data->mlx, data->window,
