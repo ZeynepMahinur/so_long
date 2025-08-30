@@ -102,7 +102,6 @@ int	press_key(int key_cd, t_game *data)
 	}
 	press_key_sd(key_cd, data);
 	move_all_enemy(data);
-	mlx_clear_window(data->mlx, data->window);
 	draw_map(data);
 	return (0);
 }

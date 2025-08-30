@@ -43,7 +43,6 @@ typedef struct s_enemy
 	int	y;
 	int	path_x;
 	int	path_y;
-	int	direction;
 	int	frame;
 }		t_enemy;
 

@@ -46,8 +46,9 @@ static int	en_hit_pl(t_game *data, int x, int y)
 	return (x == data->player_x && y == data->player_y);
 }
 
-static void	updt_map (t_enemy *enemy, int next_x, int next_y)
+static void	updt_map (t_game *data, t_enemy *enemy, int next_x, int next_y)
 {
+	data->map[enemy->y][enemy->x] = '0';
 	enemy->x = next_x;
 	enemy->y = next_y;
 }
@@ -68,5 +69,5 @@ void	mv_en_to_pl(t_game *data, t_enemy *enemy)
 		data->ded = 1;
 		close_game(data);
 	}
-	updt_map(enemy, next_x, next_y);
+	updt_map(data, enemy, next_x, next_y);
 }

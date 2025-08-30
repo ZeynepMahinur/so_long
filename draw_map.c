@@ -65,27 +65,14 @@ static void	draw_enemies(t_game *data)
 		i++;
 	}
 }
-static void	draw_map2(t_game *data)
+static void	draw_map2(t_game *data, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->height)
-	{
-		j = 0;
-		while (j < data->width)
-		{
-			if (data->map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx, data->window,
-					data->img.collectible_img, j * 64, i * 64);
-			else if (data->map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx, data->window,
-					data->img.exit_img, j * 64, i * 64);
-			j++;
-		}
-		i++;
-	}
+	if (data->map[i][j] == 'C')
+		mlx_put_image_to_window(data->mlx, data->window,
+			data->img.collectible_img, j * 64, i * 64);
+	else if (data->map[i][j] == 'E')
+		mlx_put_image_to_window(data->mlx, data->window,
+			data->img.exit_img, j * 64, i * 64);
 }
 
 
@@ -107,10 +94,10 @@ void	draw_map(t_game *data)
 					data->img.wall_img, j * 64, i * 64);
 			else if (data->map[i][j] == 'P')
 				draw_player(data, i, j);
+			draw_map2(data, i, j);
+			draw_enemies(data);
 			j++;
 		}
 		i++;
 	}
-	draw_map2(data);
-	draw_enemies(data);
 }
