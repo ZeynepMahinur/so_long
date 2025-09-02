@@ -14,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 
 NAME = so_long
 
-all: $(NAME) $(LIBFT)
+all: $(NAME)
 
 $(LIBFT):
 	make -C ./libft
