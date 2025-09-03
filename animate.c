@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animate_bonus.c                                    :+:      :+:    :+:   */
+/*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 13:53:35 by zarikan           #+#    #+#             */
-/*   Updated: 2025/08/27 13:58:19 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/09/03 12:20:02 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int animate_enemy(t_game *data)
+static int	animate_enemy(t_game *data)
 {
 	int			i;
 
@@ -51,4 +51,3 @@ int	animate(t_game *data)
 	draw_map(data);
 	return (0);
 }
-

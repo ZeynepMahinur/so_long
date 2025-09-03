@@ -115,8 +115,4 @@ void	load_player_frames(t_game *data);
 void	load_player_frames2(t_game *data);
 void	load_enemy_frames(t_game *data);
 
-size_t	ft_strlen(const char *str);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*get_next_line(int fd);
-int		ft_printf(const char *f, ...);
 #endif

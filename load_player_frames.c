@@ -6,7 +6,7 @@
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 15:34:15 by zarikan           #+#    #+#             */
-/*   Updated: 2025/08/27 15:34:55 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/09/03 12:24:38 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,3 @@ void	load_player_frames(t_game *data)
 	data->img.player_left[1] = mlx_xpm_file_to_image(data->mlx,
 			"textures/charleft2.xpm", &wid, &hei);
 }
-
-

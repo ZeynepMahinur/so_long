@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_bonus.c                                  :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 14:49:28 by zarikan           #+#    #+#             */
-/*   Updated: 2025/08/27 14:52:16 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/09/03 17:28:53 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,21 @@ static void	check_wall_limit(t_game *data)
 	}
 }
 
+static void	check_map_size(t_game *data)
+{
+	int		map_height;
+	int		map_width;
+
+	map_height = data->height * 64;
+	map_width = data->width * 64;
+	if (map_width > 5000 || map_height > 2000)
+		if_error_exit("Map is too big to be solved.", data);
+}
+
 void	check_map(t_game *data)
 {
 	check_rectangle(data);
 	check_wall_limit(data);
 	check_characters(data);
+	check_map_size(data);
 }

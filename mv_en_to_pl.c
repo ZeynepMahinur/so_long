@@ -6,7 +6,7 @@
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:23:45 by zarikan           #+#    #+#             */
-/*   Updated: 2025/08/27 16:26:30 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/09/03 12:26:02 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	en_hit_pl(t_game *data, int x, int y)
 	return (x == data->player_x && y == data->player_y);
 }
 
-static void	updt_map (t_game *data, t_enemy *enemy, int next_x, int next_y)
+static void	updt_map(t_game *data, t_enemy *enemy, int next_x, int next_y)
 {
 	if (data->map[enemy->y][enemy->x] != 'C')
 		data->map[enemy->y][enemy->x] = '0';
