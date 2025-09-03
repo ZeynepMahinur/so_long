@@ -20,6 +20,7 @@ static void	map_error(char *err)
 void	if_error_exit(char *err, t_game *data)
 {
 	map_error(err);
+	free(data->enemies);
 	free_map(data);
 	exit (1);
 }
