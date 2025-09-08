@@ -21,20 +21,6 @@ int	move_towards(int current, int target)
 	return (current);
 }
 
-int	if_enemy_present(t_game *data, int x, int y)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->enemy_count)
-	{
-		if (data->enemies[i].x == x && data->enemies[i].y == y)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	my_abs(int n)
 {
 	if (n < 0)

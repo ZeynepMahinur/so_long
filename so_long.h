@@ -109,7 +109,6 @@ void	move_all_enemy(t_game *data);
 void	check_enemies(t_game *data);
 int		my_abs(int n);
 int		move_towards(int current, int target);
-int		if_enemy_present(t_game *data, int x, int y);
 void	mv_en_to_pl(t_game *data, t_enemy *enemy);
 void	load_player_frames(t_game *data);
 void	load_player_frames2(t_game *data);
